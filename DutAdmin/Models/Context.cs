@@ -8,11 +8,11 @@ namespace DutAdmin.Models
 {
     public class Context : DbContext
     {
-        public Context() : base("name=Context")
+        public Context() : base("Context")
         {
 
         }
 
-        
+        public DbSet<Student> Students { get; set; }
     }
 }
