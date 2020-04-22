@@ -10,7 +10,7 @@ namespace DutAdmin.Models
 {
     public class Student
     {
-        [Key]
+
         [JsonProperty(PropertyName = "studentNo")]
         public string StudentNo { get; set; }
 
@@ -34,5 +34,6 @@ namespace DutAdmin.Models
 
         [JsonProperty(PropertyName = "isActive")]
         public bool IsActive { get; set; }
+
     }
 }

@@ -238,6 +238,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Student\EditStudent.cshtml" />
     <Content Include="Views\Student\CreateStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>

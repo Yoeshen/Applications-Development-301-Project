@@ -19,7 +19,8 @@ namespace DutAdmin
         private static readonly string DatabaseId = ConfigurationManager.AppSettings["database"];
         private static readonly string CollectionID = ConfigurationManager.AppSettings["collection"];
         private static DocumentClient Client;
-
+        
+        
         public static async Task<T> GetStudentAsync(string studentno)
         {
             try
@@ -76,14 +77,14 @@ namespace DutAdmin
         {
             Client = new DocumentClient(new Uri(ConfigurationManager.AppSettings["endpoint"]), ConfigurationManager.AppSettings["authKey"]);
             CreateDatabaseIfNotExistsAsync().Wait();
-            CreateCollectionIfNotExistsAsync("/category").Wait();
+            CreateCollectionIfNotExistsAsync("/studentno").Wait();
         }
 
         public static void Initialize(string endpoint, string authKey)
         {
             Client = new DocumentClient(new Uri(endpoint), authKey);
             CreateDatabaseIfNotExistsAsync().Wait();
-            CreateCollectionIfNotExistsAsync("/category").Wait();
+            CreateCollectionIfNotExistsAsync("/studentno").Wait();
         }
 
         public static void Teardown()

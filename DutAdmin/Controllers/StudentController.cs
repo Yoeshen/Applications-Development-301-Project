@@ -11,12 +11,13 @@ namespace DutAdmin.Controllers
 {
     public class StudentController : Controller
     {
-
+#pragma warning disable 1998
         [ActionName("CreateStudent")]
         public async Task<ActionResult> CreateStudentAsync()
         {
             return View();
         }
+#pragma warning disable 1998
 
         [HttpPost]
         [ActionName("CreateStudent")]
@@ -79,7 +80,7 @@ namespace DutAdmin.Controllers
         [HttpPost]
         [ActionName("DeleteStudent")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteStudentConfirmedAsync([Bind(Include = "StudenNo")]string studentno)
+        public async Task<ActionResult> DeleteStudentConfirmedAsync([Bind(Include = "StudentNo")]string studentno)
         {
             await DBRepository<Student>.DeleteStudentAsync(studentno);
             return RedirectToAction("Index");
