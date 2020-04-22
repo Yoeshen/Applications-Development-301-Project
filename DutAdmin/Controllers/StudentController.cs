@@ -53,6 +53,43 @@ namespace DutAdmin.Controllers
             }
 
             Student item = await DBRepository<Student>.GetStudentAsync(studentno);
+            if(item == null)
+            {
+                return HttpNotFound();
+            }
+            return View(item);
+        }
+
+        [ActionName("DeleteStudent")]
+        public async Task<ActionResult> DeleteStudentAsync(string studentno)
+        {
+            if(studentno == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Student item = await DBRepository<Student>.GetStudentAsync(studentno);
+            if(item == null)
+            {
+                return HttpNotFound();
+            }
+            return View(item);
+        }
+
+        [HttpPost]
+        [ActionName("DeleteStudent")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteStudentConfirmedAsync([Bind(Include = "StudenNo")]string studentno)
+        {
+            await DBRepository<Student>.DeleteStudentAsync(studentno);
+            return RedirectToAction("Index");
+        }
+
+        [ActionName("StudentDetails")]
+        public async Task<ActionResult> StudentDetailsAsync(string studentno)
+        {
+            Student item = await DBRepository<Student>.GetStudentAsync(studentno);
+            return View(item);
         }
 
         // GET: Student

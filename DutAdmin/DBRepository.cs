@@ -20,12 +20,12 @@ namespace DutAdmin
         private static readonly string CollectionID = ConfigurationManager.AppSettings["collection"];
         private static DocumentClient Client;
 
-        public static async Task<T> GetStudentAsync(String id,string category)
+        public static async Task<T> GetStudentAsync(string studentno)
         {
             try
             {
 
-                Document document = await Client.ReadDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionID, id), new RequestOptions { PartitionKey = new PartitionKey(category)});
+                Document document = await Client.ReadDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionID, studentno), new RequestOptions { PartitionKey = new PartitionKey(studentno)});
                 return (T)(dynamic)document;
             }
             catch (DocumentClientException e)
@@ -62,14 +62,14 @@ namespace DutAdmin
             return await Client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionID), item);
         }
 
-        public static async Task<Document> UpdateStudentAsync(string id, T item)
+        public static async Task<Document> UpdateStudentAsync(string studentno, T item)
         {
-            return await Client.ReplaceDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionID, id), item);
+            return await Client.ReplaceDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionID, studentno), item);
         }
 
-        public static async Task DeleteStudentAsync(string id, string category)
+        public static async Task DeleteStudentAsync(string studentno)
         {
-            await Client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionID, id), new RequestOptions { PartitionKey = new PartitionKey(category) });
+            await Client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionID, studentno), new RequestOptions { PartitionKey = new PartitionKey(studentno) });
         }
 
         public static void Initialize()
