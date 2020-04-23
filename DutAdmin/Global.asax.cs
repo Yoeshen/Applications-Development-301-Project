@@ -20,6 +20,8 @@ namespace DutAdmin
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            DBRepository<DutAdmin.Models.Student>.Initialize();
         }
     }
 }
